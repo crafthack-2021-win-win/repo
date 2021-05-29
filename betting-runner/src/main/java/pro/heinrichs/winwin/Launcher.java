@@ -3,6 +3,7 @@ package pro.heinrichs.winwin;
 import lombok.extern.slf4j.Slf4j;
 import picocli.CommandLine;
 import pro.heinrichs.winwin.local.LocalCommand;
+import pro.heinrichs.winwin.placement.PlacerCommand;
 import pro.heinrichs.winwin.server.ServerCommand;
 import pro.heinrichs.winwin.stocks.StocksCommand;
 
@@ -14,7 +15,7 @@ import pro.heinrichs.winwin.stocks.StocksCommand;
     version = "1.0.0",
     description = "Runs specification files",
     mixinStandardHelpOptions = true,
-    subcommands = {ServerCommand.class, LocalCommand.class, StocksCommand.class}
+    subcommands = {ServerCommand.class, LocalCommand.class, StocksCommand.class, PlacerCommand.class}
 )
 @Slf4j
 public class Launcher {

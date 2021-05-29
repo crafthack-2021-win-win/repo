@@ -1,7 +1,17 @@
 version: '3.7'
 
 services:
+    app_placer:
+        image: tmp:latest
+        command: placer -p 1337 --database /opt/server/database.db
+        volumes:
+            - './.backend/placer:/opt/server'
+        build:
+            context: betting-runner
+
     app_server:
+        # Fixes permission errors, TODO: Fix
+        user: root:root
         image: tmp:latest
         command: server /opt/server -o /opt/node-exporter/test.prom
         volumes:
@@ -28,6 +38,8 @@ services:
             - '--config.file=/etc/prometheus/prometheus.yml'
 
     node-exporter:
+        # Fixes permission errors, TODO: Fix
+        user: root:root
         image: prom/node-exporter:latest
         volumes:
             - ./.backend/node-exporter/:/etc/node-exporter/

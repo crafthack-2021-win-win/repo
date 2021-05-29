@@ -1,6 +1,7 @@
 package pro.heinrichs.winwin.stocks;
 
 import fi.iki.elonen.NanoHTTPD;
+import lombok.extern.slf4j.Slf4j;
 import pro.heinrichs.winwin.server.PrometheusStreamExporter;
 
 import java.io.BufferedWriter;
@@ -9,6 +10,7 @@ import java.io.StringWriter;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+@Slf4j
 public class HTTPD extends NanoHTTPD {
     private static final String NAMESPACE = "official_stock_us_";
     private final FinnhubIOClient client;
@@ -17,7 +19,7 @@ public class HTTPD extends NanoHTTPD {
         super(port);
         this.client = client;
         start(NanoHTTPD.SOCKET_READ_TIMEOUT, false);
-        System.out.format("HTTP Server: http://localhost:%d/%n", port);
+        log.info("Stock Server: http://localhost:{}/", port);
     }
 
     @Override

@@ -82,6 +82,12 @@
       <scope>provided</scope>
     </dependency>
 
+    <dependency>
+      <groupId>org.xerial</groupId>
+      <artifactId>sqlite-jdbc</artifactId>
+      <version>3.34.0</version>
+    </dependency>
+
     <!-- TODO: Allow modular design! -->
     <!-- User Supplied dependencies -->
     <dependency>
