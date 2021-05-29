@@ -3,7 +3,6 @@ version: '3.7'
 services:
     app_server:
         image: tmp:latest
-        user: 65534:65534
         command: server /opt/server -o /opt/node-exporter/test.prom
         volumes:
             - './.backend/runner/datasources:/opt/server'
