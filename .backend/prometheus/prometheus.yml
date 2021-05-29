@@ -1,0 +1,15 @@
+# my global config
+global:
+  scrape_interval: 15s
+  evaluation_interval: 10ms
+
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+        - targets: ['node-exporter:9100']
+
+  - job_name: 'app_stocks'
+    scrape_interval: 10ms
+    static_configs:
+        - targets:
+            - 'app_stocks:8080'

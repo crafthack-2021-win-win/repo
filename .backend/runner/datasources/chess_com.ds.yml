@@ -1,0 +1,54 @@
+# Namespace used for metric, the official prefix means, it is published by the official website
+namespace: official.com.chess
+
+# Human Readable Name
+name: Chess.com Data Source
+# Human Readable Authors
+authors:
+  - Björn Heinrichs
+
+# Limits specify how often a given data source may be accessed
+limits:
+  # Request limits how often websites will be called.
+  # In this example only every minute a new request may be made.
+  request:
+    minutes: 1
+
+pipeline:
+  # HTTP downloads a given page
+  - type: http
+    url: https://www.chess.com
+    # Variable name for the document to be stored
+    output: meow
+
+  # Converts the given HTML document to xml (for XPath)
+  - type: html-2-xml
+    input: meow
+    output: meow
+
+  # Allows to store variables based on the result of an XPath query
+  - type: xpath
+    input: meow
+    expressions:
+      - statement: //span[contains(@class, 'index-info-item-counter')]
+        # Deconstructs first and second variable
+        store: [ gamesToday, playersActiveNow ]
+
+  # Removes a variable
+  - type: clear
+    input: meow
+
+  # Parses values as integer
+  - type: parse-int
+    input: gamesToday
+    # Variables starting with @ are published metrics
+    output: '@gamesToday'
+
+  - type: parse-int
+    input: playersActiveNow
+    output: '@playersActiveNow'
+
+  - type: clear
+    input:
+      - gamesToday
+      - playersActiveNow

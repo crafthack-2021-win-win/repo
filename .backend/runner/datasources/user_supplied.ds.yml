@@ -1,0 +1,56 @@
+namespace: com.chess.stats.gothamchess
+name: stats for Gotham
+authors:
+  - Björn Heinrichs
+
+limits:
+  request:
+    minutes: 1
+
+pipeline:
+  - type: http
+    url: https://api.chess.com/pub/player/gothamchess/stats
+    output: myJson
+
+  - type: json-path
+    input: myJson
+    expressions:
+      - statement: $.['chess_daily']['last']['rating']
+        store:
+          - chess_daily
+
+      - statement: $.['chess_rapid']['last']['rating']
+        store:
+          - chess_rapid
+
+      - statement: $.['chess_bullet']['last']['rating']
+        store:
+          - chess_bullet
+
+      - statement: $.['chess_blitz']['last']['rating']
+        store:
+          - chess_blitz
+
+  # Removes a variable
+  - type: clear
+    input: myJson
+
+  - type: parse-int
+    input: chess_daily
+    output: '@chess_daily'
+
+  - type: parse-int
+    input: chess_rapid
+    output: '@chess_rapid'
+
+  - type: parse-int
+    input: chess_bullet
+    output: '@chess_bullet'
+
+  - type: parse-int
+    input: chess_blitz
+    output: '@chess_blitz'
+
+  - type: clear
+    input:
+      - chess_daily

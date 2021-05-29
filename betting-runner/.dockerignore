@@ -1,0 +1,14 @@
+# Git
+.git/
+.gitignore
+.backend/
+
+# Maven
+target/
+
+# IDE
+.idea/
+*.iml
+
+# Docker
+.dockerignore

@@ -1,0 +1,8 @@
+# This file documents potential features and their current issue for a new data format / extension of the existing tool.
+# TODO: Support WebSockets
+# TODO: Support variables for a data source
+#   Variables allow to make user_supplied.ds.yml generic
+#   Like generics one can define variables, that will be filled during execution (e.g. the username is a variable)
+#   Allows multiple variation using the same code.
+#   Problem: How to limit? Multiple Variations can't have the same limitations, otherwise they would never be called.
+#   However that is also problematic, because then it could cause death by thousand needles on the to be invoked data sources
