@@ -4,6 +4,8 @@ services:
     app_placer:
         image: tmp:latest
         command: placer -p 1337 --database /opt/server/database.db
+        ports:
+            - 1337:1337
         volumes:
             - './.backend/placer:/opt/server'
         build:
