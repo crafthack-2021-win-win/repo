@@ -9,7 +9,10 @@
 6. Visit localhost:9090 for prometheus console
 7. Visit localhost:8080 for current stock metrics
 
-# Win-Win Repository
+# Architecture
+![architecture](assets/architecture.png)
+
+This image shows some components that have not yet been completed.
 This repository contains the following projects:
 
 ## docker-compose.yml
